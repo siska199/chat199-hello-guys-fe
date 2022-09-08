@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Sweety Strawberry';
+    src: url("../assets/Sweety\ Strawberry\ TTF.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    overflow-x: hidden;
+    max-width: 100vw;
+    min-height: 100vh;
+    background-color:  #fbe3f0;
+    font-family: 'Quicksand';
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #d6deec;
+    border-radius: 10px;
+    background:white;
+}
+::-webkit-scrollbar-thumb {
+    background: #f3aecb;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ea5e8b;
+}
+
+

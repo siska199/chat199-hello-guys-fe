@@ -1,0 +1,19 @@
+<a href="https://iconscout.com/icons/chat" target="_blank">Chat Icon</a> by <a href="https://iconscout.com/contributors/vincent-le-moign" target="_blank">Vincent Le Moign</a>
+
+color palate: 
+pink tua --> #ea5e8b
+pink semi tua --> #f3aecb
+pink semi --> #fac9df
+pink muda --> #fbe3f0
+
+biru tua --> #8183be
+bitu muda --> #d4e7d1
+
+purple --> #d7aacf
+
+
+green --> #97c21d
+
+
+
+

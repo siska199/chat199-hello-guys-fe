@@ -1,16 +1,20 @@
 import React from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import ContactInfo from "../components/ContactInfo";
+import NavbarLeft from "../components/NavbarLeft";
+import NavbarRight from "../components/NavbarRight";
 import SearchContact from "../components/SearchContact";
-
+import AddMessage from "../components/AddMessage";
 import Page from "../Layouts/Page";
 import {
   ContainerChat,
   ContainerContacts,
   ContainerLeft,
   ContainerRight,
-  NavbarContainerLeft,
+  ContainerMessages,
 } from "./chat.css";
+
+import { messages } from "../lib/data";
+import Message from "../components/Message";
 
 const Chat = () => {
   return (
@@ -18,20 +22,25 @@ const Chat = () => {
       <ContainerChat>
         {/* Left */}
         <ContainerLeft>
-          <NavbarContainerLeft>
-            <ContactInfo />
-            <BsThreeDotsVertical className="icon-dot-tree" />
-          </NavbarContainerLeft>
+          <NavbarLeft />
           <SearchContact />
           <ContainerContacts>
             {[...Array(10)].map((_) => (
-              <ContactInfo />
+              <ContactInfo type={"contact-receiver-info"} />
             ))}
           </ContainerContacts>
         </ContainerLeft>
 
         {/* Right */}
-        <ContainerRight></ContainerRight>
+        <ContainerRight>
+          <NavbarRight />
+          <ContainerMessages>
+            {messages.map((data, i) => (
+              <Message data={data} />
+            ))}
+          </ContainerMessages>
+          <AddMessage />
+        </ContainerRight>
       </ContainerChat>
     </Page>
   );

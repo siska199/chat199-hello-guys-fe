@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 
 export const ContainerSearchContact = styled.div`
-    padding: 0.5rem 1rem;
-    background-color: #8183be;
+    padding: 0rem 1rem;
+    padding-bottom: 1rem;
+    background-color: #374095;
     
 `
 

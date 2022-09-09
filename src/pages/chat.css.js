@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import image from "../assets/bg-chat-msgs.png";
 
 export const ContainerChat = styled.section`
   display: flex;
@@ -10,8 +11,9 @@ export const ContainerChat = styled.section`
 export const ContainerLeft = styled.div`
   flex: 0.3;
   height: 100%;
-  @media(max-width:767px) {
-    flex:1.0;
+  @media (max-width: 767px) {
+    flex: 1;
+    display: ${({ contactActive }) => contactActive ? "none" : "block"};
   }
 `;
 
@@ -26,8 +28,9 @@ export const ContainerContacts = styled.div`
 
 export const ContainerRight = styled.div`
   flex: 0.7;
-  @media(max-width:767px) {
-    display: none;
+  @media (max-width: 767px) {
+    flex: 1.0;
+    display: ${({ contactActive }) => contactActive ? "block" : "none"};
   }
 `;
 
@@ -39,5 +42,8 @@ export const ContainerMessages = styled.div`
   flex-direction: column;
   gap: 1rem;
   overflow-y: scroll;
-  
-`
+  background-image: url(${image});
+  @media (max-width:767px){
+    padding: 1rem;
+  }
+`;

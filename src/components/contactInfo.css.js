@@ -4,10 +4,10 @@ export const ContainerContactInfo = styled.div`
   display: flex;
   gap: 0.5rem;
   padding: 0 1rem;
-  cursor: ${({ type }) =>
-    type === "contact-receiver-info" && "pointer"};
+  cursor: ${({ type }) => type === "contact-receiver-info" && "pointer"};
   background-color: ${({ type }) =>
     type === "contact-receiver-info" && "#fac9df"};
+  background-color: ${({ active }) => active && "yellow"};
   color: ${({ type }) =>
     type === "contact-receiver-info" ? "black" : "white"};
   &:hover {

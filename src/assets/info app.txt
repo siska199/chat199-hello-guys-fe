@@ -6,7 +6,8 @@ pink semi tua --> #f3aecb
 pink semi --> #fac9df
 pink muda --> #fbe3f0
 
-biru tua --> #8183be
+biru tua -->#374095
+biru semitua --> #8183be
 bitu muda --> #d4e7d1
 
 purple --> #d7aacf

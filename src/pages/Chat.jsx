@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ContactInfo from "../components/ContactInfo";
 import NavbarLeft from "../components/NavbarLeft";
 import NavbarRight from "../components/NavbarRight";
@@ -15,28 +15,42 @@ import {
 
 import { messages } from "../lib/data";
 import Message from "../components/Message";
+import { contacts } from "../lib/data";
 
 const Chat = () => {
+  const [contactActive, setContactActiove] = useState(false);
+
+  const handleOnClickContact = (id) => {
+    setContactActiove(id);
+  };
+
   return (
     <Page>
       <ContainerChat>
-        {/* Left */}
-        <ContainerLeft>
+        <ContainerLeft contactActive={contactActive}>
           <NavbarLeft />
           <SearchContact />
           <ContainerContacts>
-            {[...Array(10)].map((_) => (
-              <ContactInfo type={"contact-receiver-info"} />
+            {contacts.map((data, i) => (
+              <ContactInfo
+                key={i}
+                type={"contact-receiver-info"}
+                image={data.image}
+                username={data.username}
+                info={data.lastMessage}
+                handleOnClickContact={handleOnClickContact}
+                id={data.id}
+                active={contactActive === data.id ? true : false}
+              />
             ))}
           </ContainerContacts>
         </ContainerLeft>
 
-        {/* Right */}
-        <ContainerRight>
+        <ContainerRight contactActive={contactActive}>
           <NavbarRight />
           <ContainerMessages>
             {messages.map((data, i) => (
-              <Message data={data} />
+              <Message data={data} key={i} />
             ))}
           </ContainerMessages>
           <AddMessage />

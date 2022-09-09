@@ -8,8 +8,8 @@ import {
 } from "./contactInfo.css";
 
 const ContactInfo = (props) => {
-  const { type } = props;
-
+  const { type, image, username, info, active, handleOnClickContact, id } =
+    props;
   const style = {
     fontSizeH1: "",
     fontSizeP: "",
@@ -32,20 +32,17 @@ const ContactInfo = (props) => {
   }
 
   return (
-    <ContainerContactInfo type={type}>
-      <Img
-        width={style.imageWidth}
-        src={
-          "https://i.pinimg.com/564x/c1/bb/37/c1bb376255586abc64326d0cc2a26c77.jpg"
-        }
-        alt=""
-        type={type}
-      />
+    <ContainerContactInfo
+      type={type}
+      onClick={() => handleOnClickContact(id)}
+      active={active}
+    >
+      <Img width={style.imageWidth} src={image} alt="" type={type} />
       <InfoContactUser type={type}>
         <H1 type={type} fontSize={style.fontSizeH1}>
-          Fullname
+          {username}
         </H1>
-        <P fontSize={style.fontSizeP}>online</P>
+        <P fontSize={style.fontSizeP}>{info}</P>
       </InfoContactUser>
     </ContainerContactInfo>
   );

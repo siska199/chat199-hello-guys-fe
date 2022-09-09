@@ -18,10 +18,10 @@ import Message from "../components/Message";
 import { contacts } from "../lib/data";
 
 const Chat = () => {
-  const [contactActive, setContactActiove] = useState(false);
+  const [contactActive, setContactActive] = useState(false);
 
   const handleOnClickContact = (id) => {
-    setContactActiove(id);
+    setContactActive(id);
   };
 
   return (
@@ -47,7 +47,7 @@ const Chat = () => {
         </ContainerLeft>
 
         <ContainerRight contactActive={contactActive}>
-          <NavbarRight />
+          <NavbarRight setContactActive={setContactActive} />
           <ContainerMessages>
             {messages.map((data, i) => (
               <Message data={data} key={i} />

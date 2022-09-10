@@ -1,23 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerProfile = styled.div`
-  z-index: 9999;
-  background-color: #f3aecb;
-  width: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
-  height: 100%;
-  transform: translateX(-100%);
-  &.modal-active {
-    transform: translateX(0);
-  }
 
-  transition: all ease-in-out 1s;
-  @media (max-width: 767px) {
-    width: 100%;
-  }
-`;
 
 export const ContainerNavbar = styled.nav`
   background-color: #374095;
@@ -52,7 +35,4 @@ export const ContainerImg = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const Img = styled.img`
-
-
-`;
+export const Img = styled.img``;

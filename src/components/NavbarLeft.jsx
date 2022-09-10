@@ -1,24 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdMessage } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { NavbarContainerLeft, ContainerIcons, Icon } from "./navbarLeft.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleModalProfile } from "../redux/features/profileSlice";
 import SettingMenu from "./SettingMenu";
-import { handleSettingMenu } from "../redux/features/settingSlice";
 
 const NavbarLeft = () => {
-  const settingMenuActive = useSelector(
-    (state) => state.setting.value.settingMenu
-  );
+  const [settingShow, setSettingShow] = useState(false);
   const dispatch = useDispatch();
   const handleShowProfile = () => {
     dispatch(handleModalProfile(true));
   };
-  const handleShowSettingMenu = () => {
-    dispatch(handleSettingMenu(settingMenuActive ? false : true));
-  };
+
   return (
     <NavbarContainerLeft>
       <img
@@ -35,13 +30,13 @@ const NavbarLeft = () => {
         <Icon>
           <MdMessage className="icon" />
         </Icon>
-        <Icon active={settingMenuActive}>
+        <Icon active={settingShow}>
           <BsThreeDotsVertical
-            onClick={() => handleShowSettingMenu()}
+            onClick={() => setSettingShow(settingShow ? false : true)}
             className="icon"
           />
         </Icon>
-        {settingMenuActive && <SettingMenu />}
+        {settingShow && <SettingMenu />}
       </ContainerIcons>
     </NavbarContainerLeft>
   );

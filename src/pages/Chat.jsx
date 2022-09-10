@@ -16,10 +16,12 @@ import {
 import { messages } from "../lib/data";
 import Message from "../components/Message";
 import { contacts } from "../lib/data";
+import { useSelector } from "react-redux";
+import Profile from "../components/Profile";
 
 const Chat = () => {
   const [contactActive, setContactActive] = useState(false);
-
+  const modalProfile = useSelector((state) => state.profile.value.modal);
   const handleOnClickContact = (id) => {
     setContactActive(id);
   };
@@ -28,22 +30,25 @@ const Chat = () => {
     <Page>
       <ContainerChat>
         <ContainerLeft contactActive={contactActive}>
-          <NavbarLeft />
-          <SearchContact />
-          <ContainerContacts>
-            {contacts.map((data, i) => (
-              <ContactInfo
-                key={i}
-                type={"contact-receiver-info"}
-                image={data.image}
-                username={data.username}
-                info={data.lastMessage}
-                handleOnClickContact={handleOnClickContact}
-                id={data.id}
-                active={contactActive === data.id ? true : false}
-              />
-            ))}
-          </ContainerContacts>
+          <>
+            <NavbarLeft />
+            <SearchContact />
+            <ContainerContacts>
+              {contacts.map((data, i) => (
+                <ContactInfo
+                  key={i}
+                  type={"contact-receiver-info"}
+                  image={data.image}
+                  username={data.username}
+                  info={data.lastMessage}
+                  handleOnClickContact={handleOnClickContact}
+                  id={data.id}
+                  active={contactActive === data.id ? true : false}
+                />
+              ))}
+            </ContainerContacts>
+          </>
+          <Profile />
         </ContainerLeft>
 
         <ContainerRight contactActive={contactActive}>

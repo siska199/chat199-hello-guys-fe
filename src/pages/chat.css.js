@@ -6,14 +6,17 @@ export const ContainerChat = styled.section`
   height: 100vh;
   justify-content: space-between;
   overflow-y: hidden;
+  position: relative;
 `;
 
 export const ContainerLeft = styled.div`
+  position: relative;
   flex: 0.3;
   height: 100%;
+  border-right: 0.005rem solid #8183be;
   @media (max-width: 767px) {
     flex: 1;
-    display: ${({ contactActive }) => contactActive ? "none" : "block"};
+    display: ${({ contactActive }) => (contactActive ? "none" : "block")};
   }
 `;
 
@@ -29,8 +32,8 @@ export const ContainerContacts = styled.div`
 export const ContainerRight = styled.div`
   flex: 0.7;
   @media (max-width: 767px) {
-    flex: 1.0;
-    display: ${({ contactActive }) => contactActive ? "block" : "none"};
+    flex: 1;
+    display: ${({ contactActive }) => (contactActive ? "block" : "none")};
   }
 `;
 
@@ -43,7 +46,7 @@ export const ContainerMessages = styled.div`
   gap: 1rem;
   overflow-y: scroll;
   background-image: url(${image});
-  @media (max-width:767px){
+  @media (max-width: 767px) {
     padding: 1rem;
   }
 `;

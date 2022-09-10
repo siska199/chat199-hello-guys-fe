@@ -7,6 +7,7 @@ export const ContainerMessage = styled.div`
 `;
 export const MessageText = styled.div`
   padding: 0.5rem 1rem;
+  padding-bottom: 0.3rem !important;
   max-width: 25rem;
   color: white;
   border-radius: 10px;
@@ -15,3 +16,8 @@ export const MessageText = styled.div`
   background-color: ${({ type }) => (type === "sender" ? "#97c21d" : "orange")};
   ${({ type }) => type === "sender" && "margin-left:auto"}
 `;
+
+export const Time = styled.p`
+  margin-top: 0.3rem;
+  text-align: right;
+`

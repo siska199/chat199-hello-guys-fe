@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export const ContainerContactInfo = styled.div`
   display: flex;
+  align-items: center;
   gap: 0.5rem;
   padding: 0 1rem;
   cursor: ${({ type }) => type === "contact-receiver-info" && "pointer"};
   background-color: ${({ type }) =>
     type === "contact-receiver-info" && "#fac9df"};
-  background-color: ${({ active }) => active && "yellow"};
+  background-color: ${({ active }) => active && "#f3aecb"};
+  transition: all ease-out 0.5s;
   color: ${({ type }) =>
     type === "contact-receiver-info" ? "black" : "white"};
   &:hover {
@@ -49,3 +51,11 @@ export const P = styled.p`
   font-size: ${({ fontSize }) => fontSize};
   margin-top: 0.3rem;
 `;
+
+export const Time = styled.div`
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  color:  purple;
+  font-weight: 800;
+`

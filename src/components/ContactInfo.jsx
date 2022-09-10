@@ -5,6 +5,7 @@ import {
   H1,
   P,
   Img,
+  Time,
 } from "./contactInfo.css";
 
 const ContactInfo = (props) => {
@@ -44,6 +45,7 @@ const ContactInfo = (props) => {
         </H1>
         <P fontSize={style.fontSizeP}>{info}</P>
       </InfoContactUser>
+      {type === "contact-receiver-info" && <Time>18:00</Time>}
     </ContainerContactInfo>
   );
 };

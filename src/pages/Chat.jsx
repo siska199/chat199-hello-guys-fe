@@ -16,12 +16,10 @@ import {
 import { messages } from "../lib/data";
 import Message from "../components/Message";
 import { contacts } from "../lib/data";
-import { useSelector } from "react-redux";
 import Profile from "../components/Profile";
 
 const Chat = () => {
   const [contactActive, setContactActive] = useState(false);
-  const modalProfile = useSelector((state) => state.profile.value.modal);
   const handleOnClickContact = (id) => {
     setContactActive(id);
   };

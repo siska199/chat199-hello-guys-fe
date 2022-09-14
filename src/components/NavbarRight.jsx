@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsArrowRight, BsSearch, BsThreeDotsVertical } from "react-icons/bs";
-import ContactInfo from "./ContactInfo";
+import SummaryContactInfo from "./SummaryContactInfo";
 import { ContainerNavbarRight, IconsContainer, Icon } from "./navbarRight.css";
 
 const NavbarRight = (props) => {
@@ -10,7 +10,7 @@ const NavbarRight = (props) => {
     "https://i.pinimg.com/736x/94/50/00/945000e8ff2183b081d7c3e94add39d3.jpg";
   return (
     <ContainerNavbarRight>
-      <ContactInfo
+      <SummaryContactInfo
         image={image}
         username={"User Test"}
         info={"online"}
@@ -18,7 +18,11 @@ const NavbarRight = (props) => {
       />
       <IconsContainer>
         {searchActive && <input />}
-        <Icon className="icon-search" active={searchActive} onClick={() => setSearchActive(searchActive ? false : true)}>
+        <Icon
+          className="icon-search"
+          active={searchActive}
+          onClick={() => setSearchActive(searchActive ? false : true)}
+        >
           <BsSearch />
         </Icon>
         {!searchActive && (

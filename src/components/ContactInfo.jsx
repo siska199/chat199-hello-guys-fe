@@ -1,52 +1,17 @@
 import React from "react";
-import {
-  ContainerContactInfo,
-  InfoContactUser,
-  H1,
-  P,
-  Img,
-  Time,
-} from "./contactInfo.css";
+import { useSelector } from "react-redux";
+import Modal from "../Layouts/Modal";
+import { ContainerContactInfo } from "./summaryContactInfo.css";
 
-const ContactInfo = (props) => {
-  const { type, image, username, info, active, handleOnClickContact, id } =
-    props;
-  const style = {
-    fontSizeH1: "",
-    fontSizeP: "",
-    imageWidth: "",
-  };
-
-  switch (type) {
-    case "profile-receiver-info":
-      style.fontSizeH1 = "1.05rem";
-      style.fontSizeP = "0.85rem";
-      style.imageWidth = "3rem";
-      break;
-    case "contact-receiver-info":
-      style.fontSizeH1 = "1.1rem";
-      style.fontSizeP = "0.85rem";
-      style.imageWidth = "3.5rem";
-      break;
-    default:
-      break;
-  }
-
+const ContactInfo = () => {
+  const modalContactInfo = useSelector(
+    (state) => state.contact.value.modalContactInfo
+  );
+  console.log(modalContactInfo);
   return (
-    <ContainerContactInfo
-      type={type}
-      onClick={() => handleOnClickContact(id)}
-      active={active}
-    >
-      <Img width={style.imageWidth} src={image} alt="" type={type} />
-      <InfoContactUser type={type}>
-        <H1 type={type} fontSize={style.fontSizeH1}>
-          {username}
-        </H1>
-        <P fontSize={style.fontSizeP}>{info}</P>
-      </InfoContactUser>
-      {type === "contact-receiver-info" && <Time>18:00</Time>}
-    </ContainerContactInfo>
+    <Modal showModal={modalContactInfo} type="contactInfo">
+      <ContainerContactInfo>ContactInfo</ContainerContactInfo>
+    </Modal>
   );
 };
 

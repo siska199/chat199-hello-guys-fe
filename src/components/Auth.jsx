@@ -1,11 +1,26 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Input from "../Atoms/Input";
+import { handleRegister } from "../redux/features/profileSlice";
 import { FormContainer } from "./auth.css";
 
 const Auth = () => {
+  const dispatch = useDispatch();
+  const initialForm = {
+    fullname: "",
+    username: "",
+    password: "",
+  };
+  const [form, setForm] = useState(initialForm);
   const [type, setType] = useState("register");
-
+  const handleOnChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
   const handleSubmit = (e) => {
+    dispatch(type === "register" ? handleRegister(form) : "").then(() => {});
     e.preventDefault();
   };
   const handleChangeType = () => {
@@ -29,9 +44,17 @@ const Auth = () => {
         )}
       </h1>
       <form action="">
-        {type === "register" && <Input name="Full Name" type="text" />}
-        <Input name="Username" type="text" />
-        <Input name="Password" type="password" />
+        {Object.keys(form).map((data, i) => {
+          if (type !== "register" && data === "username") return null;
+          return (
+            <Input
+              handleOnChange={handleOnChange}
+              name={data}
+              value={form[data]}
+              key={i}
+            />
+          );
+        })}
         <button onClick={(e) => handleSubmit(e)}>Register</button>
         <p>
           {type === "register" ? (

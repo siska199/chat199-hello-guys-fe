@@ -15,30 +15,48 @@ import {
 
 // import { messages } from "../lib/data";
 // import { contacts } from "../lib/data";
-// import { TYPES_CHAT_REDUCER } from "../context/ChatContext";
-import { EVENTS_CHAT_SOCKET } from "../context/ChatContext";
 import ContactInfo from "../components/ContactInfo";
+import { TYPES_CHAT_REDUCER, EVENTS_CHAT_SOCKET } from "../context/ChatContext";
 import Message from "../components/Message";
 import Profile from "../components/Profile";
 import ChatContext from "../context/ChatContext";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 const Chat = () => {
+  const containerRef = useRef(null);
+
   const {
     socket,
     state: { contacts, messages, activeContact },
+    dispatch,
   } = useContext(ChatContext);
+  console.log("contacts enter ui: ", contacts);
+  console.log("messages enter ui: ", messages);
+  console.log("activeContact enter ui: ", activeContact);
+
   const handleOnClickContact = (id) => {
-    // dispatch({
-    //   type: TYPES_CHAT_REDUCER.SET_ACTIVE_CONTACT,
-    //   payload: data,
-    // });
+    dispatch({
+      type: TYPES_CHAT_REDUCER.SET_ACTIVE_CONTACT,
+      payload: contacts.filter((data) => data.id === id)[0],
+    });
+    socket.emit(EVENTS_CHAT_SOCKET.LOAD_MESSAGES, id); //-->id = idReceiver
   };
 
   useEffect(() => {
     socket.emit(EVENTS_CHAT_SOCKET.LOAD_CONTACTS, 1);
   }, []);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+  
+  const scrollToBottom = () => {
+    containerRef.current.scroll({
+      top: containerRef.current.scrollHeight,
+      left: 0,
+    });
+  };
   return (
     <Page>
       <ContainerChat>
@@ -53,8 +71,8 @@ const Chat = () => {
                     key={i}
                     id={data.id}
                     type={"contact-receiver-info"}
-                    image ={data.image}
-                    username = {data.username}
+                    image={data.image}
+                    username={data.username}
                     handleOnClickContact={handleOnClickContact}
                     active={
                       activeContact && activeContact.id === data.id
@@ -70,7 +88,7 @@ const Chat = () => {
 
         <ContainerRight contactActive={activeContact}>
           <NavbarRight setContactActive={handleOnClickContact} />
-          <ContainerMessages>
+          <ContainerMessages ref={containerRef}>
             {messages.length > 0 &&
               messages.map((data, i) => <Message data={data} key={i} />)}
           </ContainerMessages>

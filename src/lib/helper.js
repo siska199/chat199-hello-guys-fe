@@ -17,3 +17,11 @@ export const generateImages = () => {
   }
   return images;
 };
+
+export const firstCharUpperCase = (sentence) => {
+  const words = [];
+  sentence.split(" ").forEach((word) => {
+    words.push(word.charAt(0).toUpperCase() + word.slice(1));
+  });
+  return words.join(" ");
+};

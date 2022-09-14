@@ -10,6 +10,8 @@ export const EVENTS_CHAT_SOCKET = {
   NEW_MESSAGE: "NEW_MESSAGE",
   LOAD_CONTACTS: "LOAD_CONTACTS",
   CONTACTS: "CONTACTS",
+  LOAD_MESSAGES: "LOAD_MESSAGES",
+  MESSAGES: "MESSAGES",
 };
 
 export const TYPES_CHAT_REDUCER = {
@@ -22,7 +24,7 @@ export const TYPES_CHAT_REDUCER = {
 };
 
 const initialState = {
-  user: 1,
+  user: localStorage.getItem("user"),
   contacts: [],
   activeContact: null,
   messages: [],
@@ -38,7 +40,7 @@ const reducer = (state, action) => {
     case TYPES_CHAT_REDUCER.SET_ACTIVE_CONTACT:
       return { ...state, activeContact: action.payload };
     case TYPES_CHAT_REDUCER.SET_MESSAGES:
-      return { ...state, message: action.payload };
+      return { ...state, messages: action.payload };
     case TYPES_CHAT_REDUCER.SET_NEW_MESSAGE:
       return { ...state, newMessages: action.payload };
     case TYPES_CHAT_REDUCER.DELETE_NEW_MESSAGES_SPECIFIED_USER:
@@ -65,6 +67,15 @@ export const ChatContextProvider = ({ children }) => {
       payload: dataContacts,
     });
   });
+
+  socket.on(EVENTS_CHAT_SOCKET.MESSAGES, (dataMessages) => {
+    console.log("dataMessages", dataMessages);
+    dispatch({
+      type: TYPES_CHAT_REDUCER.SET_MESSAGES,
+      payload: dataMessages,
+    });
+  });
+
   return (
     <ChatContext.Provider
       value={{

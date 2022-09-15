@@ -1,24 +1,22 @@
 import React from "react";
 import Page from "../Layouts/Page";
-import { AuthContainer, Container, ImageContainer } from "./login.css";
+import { AuthContainer, Container, ImageContainer } from "./auth.css";
 import helloGuys from "../assets/hello-guys.png";
-import Auth from "../components/Auth";
+import FormAuth from "../components/FormAuth";
 
-const Login = () => {
+const Auth = () => {
   return (
     <Page>
       <Container>
-        {/* Image */}
         <ImageContainer>
           <img src={helloGuys} alt="" />
         </ImageContainer>
-        {/* Auth */}
         <AuthContainer>
-          <Auth />
+          <FormAuth />
         </AuthContainer>
       </Container>
     </Page>
   );
 };
 
-export default Login;
+export default Auth;

@@ -1,27 +1,21 @@
 import React from "react";
+import { useState } from "react";
 import { ContainerInput } from "./input.css";
-import { firstCharUpperCase } from "../lib/helper";
 
 const Input = (props) => {
-  const { name, value, handleOnChange } = props;
-  let type = "text";
-  switch (name) {
-    case "username":
-      type = "text";
-      break;
-    case "fullname":
-      type = "text";
-      break;
-    case "password":
-      type = "password";
-      break;
-    default:
-      break;
-  }
+  const [notFocused, setNotFocused] = useState("true");
+  const { handleOnChange, label, error, ...inputProps } = props;
   return (
     <ContainerInput>
-      <label htmlFor="">{firstCharUpperCase(name)}</label>
-      <input onChange={handleOnChange} type={type} name={name} value={value} />
+      <label htmlFor="">{label}</label>
+      <input
+        onBlur={() => setNotFocused("false")}
+        notfocused={notFocused}
+        onChange={handleOnChange}
+        {...inputProps}
+        required
+      />
+      <span>{error}</span>
     </ContainerInput>
   );
 };

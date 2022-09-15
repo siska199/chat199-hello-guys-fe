@@ -7,7 +7,6 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
-
   h1 {
     text-align: center;
     font-size: 2rem;
@@ -45,6 +44,10 @@ export const FormContainer = styled.div`
       border-radius: 10px;
       color: white;
       margin-top: 0.5rem;
+    }
+    button:disabled{
+      pointer-events: none;
+      background-color: #d490c8;
     }
     p {
       text-align: center;

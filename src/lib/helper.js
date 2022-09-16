@@ -51,3 +51,18 @@ export const inputsFormAuth = [
       "Password should be 8-20 characters and includes at least contain 1 lowercase, 1 uppercase, 1 numeric, and 1 special character",
   },
 ];
+
+export const handleUploadImageToCloudinary = async (image) => {
+  const formImage = new FormData();
+  formImage.append("file", image);
+  formImage.append("upload_preset", "my-uploads");
+  const dataImage = await fetch(
+    "https://api.cloudinary.com/v1_1/university-state-of-malang-city/image/upload",
+    {
+      method: "POST",
+      body: formImage,
+    }
+  ).then((r) => r.json());
+
+  return dataImage.secure_url;
+};

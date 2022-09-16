@@ -6,7 +6,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ChatContextProvider } from "./context/ChatContext";
-import 'react-notifications/lib/notifications.css';
+import "react-notifications/lib/notifications.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

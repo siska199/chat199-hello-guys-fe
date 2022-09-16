@@ -6,7 +6,7 @@ import {
   ContainerInput,
   ContainerSearchContact,
   Icon,
-} from "./searchContact.css";
+} from "../styles/searchContact.css";
 
 const SearchContact = () => {
   const [focus, setFocus] = useState(false);

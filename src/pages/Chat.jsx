@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import SummaryContactInfo from "../components/SummaryContactInfo";
 import NavbarLeft from "../components/NavbarLeft";
 import NavbarRight from "../components/NavbarRight";
@@ -13,8 +13,6 @@ import {
   ContainerMessages,
 } from "./chat.css";
 
-// import { messages } from "../lib/data";
-// import { contacts } from "../lib/data";
 import ContactInfo from "../components/ContactInfo";
 import { TYPES_CHAT_REDUCER, EVENTS_CHAT_SOCKET } from "../context/ChatContext";
 import Message from "../components/Message";
@@ -31,9 +29,6 @@ const Chat = () => {
     state: { contacts, messages, activeContact },
     dispatch,
   } = useContext(ChatContext);
-  console.log("contacts enter ui: ", contacts);
-  console.log("messages enter ui: ", messages);
-  console.log("activeContact enter ui: ", activeContact);
 
   const handleOnClickContact = (id) => {
     dispatch({
@@ -50,7 +45,7 @@ const Chat = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-  
+
   const scrollToBottom = () => {
     containerRef.current.scroll({
       top: containerRef.current.scrollHeight,

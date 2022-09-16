@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { ContainerInput } from "./input.css";
+import { ContainerInput } from "../styles/input.css";
 
 const Input = (props) => {
   const [notFocused, setNotFocused] = useState("true");

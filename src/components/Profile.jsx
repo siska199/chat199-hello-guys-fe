@@ -1,22 +1,68 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 import InfoProfile from "../Atoms/InfoProfile";
 import Modal from "../Layouts/Modal";
-import { handleModalProfile } from "../redux/features/profileSlice";
+import { handleUploadImageToCloudinary } from "../lib/helper";
+import {
+  handleGetProfileData,
+  handleModalProfile,
+  handleUpdateProfile,
+} from "../redux/features/profileSlice";
 import {
   ContainerNavbar,
   ContainerInfosProfile,
   ContainerImg,
   Img,
-} from "./profile.css";
+  ButtonSaveImage,
+  ButtonEditImageContainer,
+  ButtonCancelChangeImage,
+} from "../styles/profile.css";
+import LoadingIcon from "../Atoms/LoadingIcon";
 
 const Profile = () => {
+  const imgRef = useRef(null);
   const dispatch = useDispatch();
   const showProfile = useSelector((state) => state.profile.value.modal);
+  const { image, fullname, username, info } = useSelector(
+    (state) => state.profile.value.user
+  );
+  const [imageChange, setImageChange] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const handleCloseProfile = () => {
     dispatch(handleModalProfile(false));
+    setImageChange(null);
   };
+  const handleOnChangeImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (readerEvent) => {
+        setImageChange({
+          file,
+          urlPreview: readerEvent.target.result,
+        });
+      };
+    }
+  };
+  const handleSaveImage = async () => {
+    setLoading(true);
+    const url_imge = await handleUploadImageToCloudinary(imageChange.file);
+    dispatch(handleUpdateProfile({ image: url_imge })).then(() => {
+      dispatch(handleGetProfileData()).then(() => {
+        setImageChange(null);
+        setLoading(false);
+        NotificationManager.success("Change Profile Picture Success", "Success", 4000);
+      });
+    });
+  };
+
   return (
     <Modal showModal={showProfile} type={"profile"}>
       <>
@@ -28,18 +74,40 @@ const Profile = () => {
           <h1>Profile</h1>
         </ContainerNavbar>
         <ContainerInfosProfile>
-          <ContainerImg>
+          <ContainerImg
+            imagePreview={imageChange?.urlPreview}
+            onClick={() => imgRef.current.click()}
+          >
             <Img
-              src={
-                "https://i.pinimg.com/564x/16/ff/a8/16ffa8007d5eecf4432446b2ab85aafd.jpg"
-              }
+              src={imageChange?.urlPreview ? imageChange?.urlPreview : image}
               alt=""
             />
+            <input
+              ref={imgRef}
+              type="file"
+              accept="image/*"
+              name="image"
+              hidden
+              onChange={(e) => handleOnChangeImage(e)}
+            />
           </ContainerImg>
-          <InfoProfile label={"Full Name"} fill={"Siska Apriana Rifianti"} />
-          <InfoProfile label={"Username"} fill={"Siska199"} />
+          {imageChange?.urlPreview && (
+            <ButtonEditImageContainer>
+              <ButtonSaveImage onClick={() => handleSaveImage()}>
+                Save Image Profile
+                {loading && <LoadingIcon />}
+              </ButtonSaveImage>
+              <ButtonCancelChangeImage onClick={() => setImageChange(null)}>
+                Cancel Change Image
+              </ButtonCancelChangeImage>
+            </ButtonEditImageContainer>
+          )}
+          <InfoProfile label={"Full Name"} name={"fullname"} field={fullname} />
+          <InfoProfile label={"Username"} name={"username"} field={username} />
+          <InfoProfile label={"Info"} name={"info"} field={info} />
         </ContainerInfosProfile>
       </>
+      <NotificationContainer />
     </Modal>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Input from "../Atoms/Input";
 import { handleLogin, handleRegister } from "../redux/features/profileSlice";
-import { FormContainer } from "./formAuth.css";
+import { FormContainer } from "../styles/formAuth.css";
 import {
   NotificationContainer,
   NotificationManager,
@@ -18,8 +18,6 @@ const FormAuth = () => {
     username: "",
     password: "",
   };
-  const errorMsg = useSelector((state) => state.profile.value.error);
-  console.log("error msg ui: ", errorMsg);
   const [form, setForm] = useState(initialForm);
   const [type, setType] = useState("register");
   const disabledLogin =
@@ -35,12 +33,10 @@ const FormAuth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const inputsInvalid = document.querySelectorAll("input:invalid");
-    console.log(inputsInvalid.length);
     if (inputsInvalid.length === 0) {
       dispatch(
         type === "register" ? handleRegister(form) : handleLogin(form)
       ).then((data) => {
-        console.log("data inside", data);
         if (data.payload.error) {
           NotificationManager.error(data.payload.error, "Error", 4000);
         } else {

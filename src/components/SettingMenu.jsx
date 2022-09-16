@@ -1,5 +1,5 @@
 import React from "react";
-import { ContainerSettingMenu } from "./settingMenu.css";
+import { ContainerSettingMenu } from "../styles/settingMenu.css";
 
 const SettingMenu = () => {
   const menu = ["Group baru", "Pesan berbintang", "Setelan", "keluar"];

@@ -8,12 +8,12 @@ export const ContainerModal = styled.section`
   left: 0;
   position: ${({ position }) => position};
   height: 100%;
+  overflow-y: scroll;
   transform: translateX(-100%);
   &.modal-active {
     transform: translateX(0);
   }
   ${({ type }) => type === "contactInfo" && "flex:0.3"}
-  border: 2px solid black;
   transition: all ease-in-out 0.5s;
   @media (max-width: 767px) {
     width: 100%;

@@ -11,7 +11,10 @@ import {
 import { generateImages } from "../lib/helper";
 import { useState } from "react";
 import { useEffect } from "react";
-import { handleUpdateProfile } from "../redux/features/profileSlice";
+import {
+  handleGetProfileData,
+  handleUpdateProfile,
+} from "../redux/features/profileSlice";
 
 const ChooseAfatar = () => {
   const dispatch = useDispatch();
@@ -28,6 +31,7 @@ const ChooseAfatar = () => {
       image: avatars[avatarChoose],
     };
     dispatch(handleUpdateProfile(form));
+    dispatch(handleGetProfileData());
     navigate("/");
   };
   return (

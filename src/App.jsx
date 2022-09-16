@@ -12,9 +12,8 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    token && dispatch(handleGetProfileData(token));
+    token && dispatch(handleGetProfileData());
   }, [dispatch]);
-  console.log("user updated",user);
   return (
     <Routes>
       {user ? (

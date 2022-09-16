@@ -27,6 +27,7 @@ export const ContainerInput = styled.div`
   padding-bottom: 0.4rem;
   border-bottom: 2px solid green;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.1rem;

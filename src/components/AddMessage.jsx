@@ -2,7 +2,7 @@ import React from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { TbCloudUpload } from "react-icons/tb";
 import { MdKeyboardVoice } from "react-icons/md";
-import { ContainerAddMessage } from "./addMessage.css";
+import { ContainerAddMessage } from "../styles/addMessage.css";
 import { useContext } from "react";
 import ChatContext from "../context/ChatContext";
 import { EVENTS_CHAT_SOCKET } from "../context/ChatContext";

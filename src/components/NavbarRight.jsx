@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsArrowRight, BsSearch, BsThreeDotsVertical } from "react-icons/bs";
 import SummaryContactInfo from "./SummaryContactInfo";
-import { ContainerNavbarRight, IconsContainer, Icon } from "./navbarRight.css";
+import { ContainerNavbarRight, IconsContainer, Icon } from "../styles/navbarRight.css";
 
 const NavbarRight = (props) => {
   const { setContactActive } = props;

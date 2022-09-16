@@ -7,7 +7,7 @@ import {
   P,
   Img,
   Time,
-} from "./summaryContactInfo.css";
+} from "../styles/summaryContactInfo.css";
 import { handleModalContactInfo } from "../redux/features/contactSlice";
 
 const SummaryContactInfo = (props) => {

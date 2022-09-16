@@ -50,11 +50,10 @@ const handleLogin = createAsyncThunk("profile/Login", async (form) => {
 
 const handleGetProfileData = createAsyncThunk(
   "profile/profileData",
-  async (token) => {
+  async () => {
     try {
-      setAuthToken(token);
+      setAuthToken(localStorage.getItem("token"));
       const dataUser = await API.get(API_ENDPOINTS.USER);
-      console.log("response dataUser: ", dataUser);
       return {
         user: dataUser.data.data,
       };
@@ -69,14 +68,12 @@ const handleGetProfileData = createAsyncThunk(
 const handleUpdateProfile = createAsyncThunk(
   "profile/updateProfile",
   async (form) => {
-    console.log("form: ", form);
     try {
-      const res = await API.patch(API_ENDPOINTS.USER, form, {
+      await API.patch(API_ENDPOINTS.USER, form, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log("update res: ", res);
       return {};
     } catch (error) {
       return {

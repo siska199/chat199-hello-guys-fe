@@ -1,13 +1,12 @@
 import React from "react";
 import { useContext } from "react";
 import ChatContext from "../context/ChatContext";
-import { ContainerMessage, MessageText, Time } from "./message.css.";
+import { ContainerMessage, MessageText, Time } from "../styles/message.css.";
 
 const Message = (props) => {
   const {
     state: { user },
   } = useContext(ChatContext);
-  console.log("user: ", user);
   const { idSender, text } = props.data;
   const typeUser = idSender === user ? "sender" : "receiver";
   return (

@@ -5,17 +5,18 @@ import ChatContext from "../context/ChatContext";
 import { ContainerListContact } from "../styles/listContact.css";
 import { TYPES_CHAT_REDUCER } from "../context/ChatContext";
 import { EVENTS_CHAT_SOCKET } from "../context/ChatContext";
+import { useSelector } from "react-redux";
 
 const ListContact = () => {
+  const { id } = useSelector((state) => state.profile.value.user);
   const {
     socket,
     state: { contacts, activeContact },
     dispatch,
   } = useContext(ChatContext);
-  console.log("contacts: ", contacts);
 
   useEffect(() => {
-    socket.emit(EVENTS_CHAT_SOCKET.LOAD_CONTACTS, 1);
+    socket.emit(EVENTS_CHAT_SOCKET.LOAD_CONTACTS, id);
   }, [socket]);
 
   const handleOnClickContact = (id) => {

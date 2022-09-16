@@ -9,7 +9,7 @@ import { handleGetProfileData } from "./redux/features/profileSlice";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile.value.user);
-
+  console.log(user);
   useEffect(() => {
     const token = localStorage.getItem("token");
     token && dispatch(handleGetProfileData());

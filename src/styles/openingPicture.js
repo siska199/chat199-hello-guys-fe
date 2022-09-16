@@ -8,7 +8,7 @@ export const ContainerOpenPicture = styled.div`
   height: 100%;
   flex-direction: column;
   h1 {
-    width : 30rem;
+    width : 27rem;
     text-align: center;
     font-size: 2rem;
     font-family: "Sweety Strawberry";

@@ -61,6 +61,7 @@ export const ChatContextProvider = ({ children }) => {
   socket.on(EVENTS_CHAT_SOCKET.CONNECTION_ERROR, (err) => {
     new Error(err.message);
   });
+  
   socket.on(EVENTS_CHAT_SOCKET.CONTACTS, (dataContacts) => {
     dispatch({
       type: TYPES_CHAT_REDUCER.SET_CONTACTS,
@@ -69,7 +70,6 @@ export const ChatContextProvider = ({ children }) => {
   });
 
   socket.on(EVENTS_CHAT_SOCKET.MESSAGES, (dataMessages) => {
-    console.log("dataMessages", dataMessages);
     dispatch({
       type: TYPES_CHAT_REDUCER.SET_MESSAGES,
       payload: dataMessages,

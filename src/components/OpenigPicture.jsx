@@ -6,7 +6,7 @@ const OpenigPicture = () => {
     <ContainerOpenPicture>
       <h1>
         <span>Let's Build</span> <span>Your Connection</span>
-        <span> With</span> <span > hello-guys-199</span>
+        <span> With</span> <span> hello-guys-199</span>
       </h1>
       <img src={openingBg} alt="" />
     </ContainerOpenPicture>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerSettingMenu = styled.div`
+export const ContainerMenuMini = styled.div`
   background-color: #8183be;
   width: 12rem;
   right:1rem;

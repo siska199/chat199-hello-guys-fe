@@ -48,6 +48,20 @@ const handleLogin = createAsyncThunk("profile/Login", async (form) => {
   }
 });
 
+const handleLogout = createAsyncThunk("profile/Logout", async () => {
+  try {
+    await API.get(API_ENDPOINTS.LOGOUT);
+    localStorage.removeItem("token");
+    return {
+      
+    };
+  } catch (error) {
+    return {
+      error: error.response.data.message,
+    };
+  }
+});
+
 const handleGetProfileData = createAsyncThunk(
   "profile/profileData",
   async () => {
@@ -125,6 +139,18 @@ const profileSlice = createSlice({
     [handleUpdateProfile.pending]: (state, action) => {},
     [handleUpdateProfile.fulfilled]: (state, action) => {},
     [handleUpdateProfile.rejected]: (state, action) => {},
+
+    [handleLogout.pending]: (state, action) => {},
+    [handleLogout.fulfilled]: (state, action) => {
+      console.log(action);
+      if (action.payload.error) {
+        state.value.error = action.payload.error;
+      } else {
+        console.log("user null");
+        state.value.user = null;
+      }
+    },
+    [handleLogout.rejected]: (state, action) => {},
   },
 });
 
@@ -134,6 +160,7 @@ export const { handleModalProfile } = profileSlice.actions;
 export {
   handleRegister,
   handleLogin,
+  handleLogout,
   handleGetProfileData,
   handleUpdateProfile,
 };

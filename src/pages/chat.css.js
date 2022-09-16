@@ -5,7 +5,7 @@ export const ContainerChat = styled.section`
   display: flex;
   height: 100vh;
   justify-content: space-between;
-  overflow-y: hidden;
+  overflow: hidden;
   position: relative;
 `;
 

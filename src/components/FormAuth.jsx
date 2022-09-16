@@ -20,9 +20,9 @@ const FormAuth = () => {
   };
   const [form, setForm] = useState(initialForm);
   const [type, setType] = useState("register");
-  const disabledLogin =
+  const disabledRegister =
     form.fullname && form.username && form.password ? false : true;
-  const disabledRegister = form.username && form.password ? false : true;
+  const disabledLogin = form.username && form.password ? false : true;
 
   const handleOnChange = (e) => {
     setForm({

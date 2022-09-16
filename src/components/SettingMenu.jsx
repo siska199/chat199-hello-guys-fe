@@ -1,14 +1,12 @@
 import React from "react";
-import { ContainerSettingMenu } from "../styles/settingMenu.css";
+import MenuMini from "../Layouts/MenuMini";
 
 const SettingMenu = () => {
-  const menu = ["Group baru", "Pesan berbintang", "Setelan", "keluar"];
+  const menu = ["Group baru", "Pesan berbintang", "Setelan", "Keluar"];
   return (
-    <ContainerSettingMenu>
-      {menu.map((data, i) => (
-        <div key={i}>{data}</div>
-      ))}
-    </ContainerSettingMenu>
+    <>
+      <MenuMini menu={menu} />
+    </>
   );
 };
 

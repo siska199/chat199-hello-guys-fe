@@ -6,17 +6,19 @@ import { ContainerAddMessage } from "../styles/addMessage.css";
 import { useContext } from "react";
 import ChatContext from "../context/ChatContext";
 import { EVENTS_CHAT_SOCKET } from "../context/ChatContext";
+import { useState } from "react";
 
 const AddMessage = () => {
+  const idUser = useState(state=>state.profile.user.id)
   const {
     socket,
-    state: { user, activeContact },
+    state: { activeContact },
   } = useContext(ChatContext);
 
   const handleSubmitMessage = (e) => {
     if (e.code === "Enter") {
       const form = {
-        idSender: user,
+        idSender: idUser,
         idReceiver: activeContact.id,
         text: e.target.value,
       };

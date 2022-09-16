@@ -11,7 +11,8 @@ export const ContainerChat = styled.section`
 
 export const ContainerLeft = styled.div`
   position: relative;
-  flex: 0.3;
+  /* flex: 0.3; */
+  width: 25rem;
   height: 100%;
   border-right: 0.005rem solid #8183be;
   @media (max-width: 767px) {
@@ -30,7 +31,7 @@ export const ContainerContacts = styled.div`
 `;
 
 export const ContainerRight = styled.div`
-  flex: 0.7;
+  flex-grow: 1;
   @media (max-width: 767px) {
     flex: 1;
     display: ${({ activeContact }) => (activeContact ? "block" : "none")};

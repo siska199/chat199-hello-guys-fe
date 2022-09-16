@@ -10,10 +10,13 @@ import {
 } from "../styles/navbarRight.css";
 
 const NavbarRight = () => {
-  const { dispatch } = useContext(ChatContext);
+  const {
+    dispatch,
+    state: {
+      activeContact: { image, username, id, status },
+    },
+  } = useContext(ChatContext);
   const [searchActive, setSearchActive] = useState(false);
-  const image =
-    "https://i.pinimg.com/736x/94/50/00/945000e8ff2183b081d7c3e94add39d3.jpg";
   const handleBack = () => {
     dispatch({
       type: TYPES_CHAT_REDUCER.SET_ACTIVE_CONTACT,
@@ -23,9 +26,10 @@ const NavbarRight = () => {
   return (
     <ContainerNavbarRight>
       <Contact
+        id={id}
         image={image}
-        username={"User Test"}
-        info={"online"}
+        username={username}
+        info={status}
         type={"sum-receiver-info"}
       />
       <IconsContainer>

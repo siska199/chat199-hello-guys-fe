@@ -41,7 +41,7 @@ const Contact = (props) => {
   return (
     <ContainerContactInfo
       type={type}
-      onClick={() => handleOnClickContact(id)}
+      onClick={() => (type === "contact" ? handleOnClickContact(id) : "")}
       active={active}
     >
       <Img

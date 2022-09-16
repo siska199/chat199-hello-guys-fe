@@ -3,20 +3,20 @@ import { useContext } from "react";
 import Contact from "../atoms/Contact";
 import ChatContext from "../context/ChatContext";
 import { ContainerListContact } from "../styles/listContact.css";
-import { TYPES_CHAT_REDUCER, } from "../context/ChatContext";
+import { TYPES_CHAT_REDUCER } from "../context/ChatContext";
 import { EVENTS_CHAT_SOCKET } from "../context/ChatContext";
 
 const ListContact = () => {
   const {
     socket,
     state: { contacts, activeContact },
-    dispatch
+    dispatch,
   } = useContext(ChatContext);
   console.log("contacts: ", contacts);
 
   useEffect(() => {
     socket.emit(EVENTS_CHAT_SOCKET.LOAD_CONTACTS, 1);
-  }, []);
+  }, [socket]);
 
   const handleOnClickContact = (id) => {
     dispatch({

@@ -45,7 +45,7 @@ export const FormContainer = styled.div`
       color: white;
       margin-top: 0.5rem;
     }
-    button:disabled{
+    button:disabled {
       pointer-events: none;
       background-color: #d490c8;
     }

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Contact from "../atoms/Contact";
 import NavbarLeft from "../components/NavbarLeft";
 import NavbarRight from "../components/NavbarRight";
 import SearchContact from "../components/SearchContact";
@@ -7,20 +6,19 @@ import AddMessage from "../components/AddMessage";
 import Page from "../Layouts/Page";
 import {
   ContainerChat,
-  ContainerContacts,
   ContainerLeft,
   ContainerRight,
   ContainerMessages,
+  ContainerContactInfo,
 } from "./chat.css";
-
-import ContactInfo from "../components/ContactInfo";
-import { TYPES_CHAT_REDUCER, EVENTS_CHAT_SOCKET } from "../context/ChatContext";
 import Message from "../components/Message";
 import Profile from "../components/Profile";
 import ChatContext from "../context/ChatContext";
 import { useEffect } from "react";
 import { useRef } from "react";
 import ListContact from "../components/ListContact";
+import OpenigPicture from "../components/OpenigPicture";
+import ContactInfo from "../components/ContactInfo";
 
 const Chat = () => {
   const containerRef = useRef(null);
@@ -30,7 +28,7 @@ const Chat = () => {
   } = useContext(ChatContext);
 
   useEffect(() => {
-    scrollToBottom();
+    containerRef.current && scrollToBottom();
   }, [messages]);
 
   const scrollToBottom = () => {
@@ -53,13 +51,21 @@ const Chat = () => {
         </ContainerLeft>
 
         <ContainerRight activeContact={activeContact}>
-          <NavbarRight />
-          <ContainerMessages ref={containerRef}>
-            {messages.length > 0 &&
-              messages.map((data, i) => <Message data={data} key={i} />)}
-          </ContainerMessages>
-          <AddMessage />
+          {activeContact ? (
+            <>
+              <NavbarRight />
+              <ContainerMessages ref={containerRef}>
+                {messages.length > 0 &&
+                  messages.map((data, i) => <Message data={data} key={i} />)}
+              </ContainerMessages>
+              <AddMessage />
+            </>
+          ) : (
+            <OpenigPicture />
+          )}
         </ContainerRight>
+
+        <ContactInfo />
       </ContainerChat>
     </Page>
   );

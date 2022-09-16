@@ -11,7 +11,6 @@ const Modal = ({ children, showModal, type }) => {
       break;
     case "contactInfo":
       position = "flex";
-      // width = showModal ? "30%" : "0px";
       break;
     default:
       position = "absolute";

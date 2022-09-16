@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Input from "../Atoms/Input";
+import Input from "../atoms/Input";
 import { handleLogin, handleRegister } from "../redux/features/profileSlice";
 import { FormContainer } from "../styles/formAuth.css";
 import {

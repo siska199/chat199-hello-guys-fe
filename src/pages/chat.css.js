@@ -16,7 +16,7 @@ export const ContainerLeft = styled.div`
   border-right: 0.005rem solid #8183be;
   @media (max-width: 767px) {
     flex: 1;
-    display: ${({ contactActive }) => (contactActive ? "none" : "block")};
+    display: ${({ activeContact }) => (activeContact ? "none" : "block")};
   }
 `;
 
@@ -33,7 +33,7 @@ export const ContainerRight = styled.div`
   flex: 0.7;
   @media (max-width: 767px) {
     flex: 1;
-    display: ${({ contactActive }) => (contactActive ? "block" : "none")};
+    display: ${({ activeContact }) => (activeContact ? "block" : "none")};
   }
 `;
 

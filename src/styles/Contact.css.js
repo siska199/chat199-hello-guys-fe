@@ -5,16 +5,16 @@ export const ContainerContactInfo = styled.div`
   align-items: center;
   gap: 0.5rem;
   padding: 0 1rem;
-  cursor: ${({ type }) => type === "contact-receiver-info" && "pointer"};
+  cursor: ${({ type }) => type === "contact" && "pointer"};
   background-color: ${({ type }) =>
-    type === "contact-receiver-info" && "#fac9df"};
+    type === "contact" && "#fac9df"};
   background-color: ${({ active }) => active && "#f3aecb"};
   transition: all ease-out 0.5s;
   color: ${({ type }) =>
-    type === "contact-receiver-info" ? "black" : "white"};
+    type === "contact" ? "black" : "white"};
   &:hover {
     background-color: ${({ type }) =>
-      type === "contact-receiver-info" && "#f3aecb"};
+      type === "contact" && "#f3aecb"};
   }
   &:hover > div {
     border-bottom: none;
@@ -38,14 +38,14 @@ export const Img = styled.img`
   margin-bottom: 0.5rem;
   cursor: pointer;
   border: ${({ type }) =>
-    type === "contact-receiver-info"
+    type === "contact"
       ? "0.2rem solid #97c21d"
       : "0.2rem solid #d7aacf"};
 `;
 
 export const H1 = styled.h1`
   font-size: ${({ fontSize }) => fontSize};
-  font-weight: ${({ type }) => type === "contact-receiver-info" && 700};
+  font-weight: ${({ type }) => type === "contact" && 700};
 `;
 
 export const P = styled.p`

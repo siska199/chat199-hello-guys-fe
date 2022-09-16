@@ -5,7 +5,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import InfoProfile from "../Atoms/InfoProfile";
+import InfoProfile from "../atoms/InfoProfile";
 import Modal from "../Layouts/Modal";
 import { handleUploadImageToCloudinary } from "../lib/helper";
 import {
@@ -22,7 +22,7 @@ import {
   ButtonEditImageContainer,
   ButtonCancelChangeImage,
 } from "../styles/profile.css";
-import LoadingIcon from "../Atoms/LoadingIcon";
+import LoadingIcon from "../atoms/LoadingIcon";
 
 const Profile = () => {
   const imgRef = useRef(null);

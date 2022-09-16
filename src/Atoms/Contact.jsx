@@ -7,10 +7,10 @@ import {
   P,
   Img,
   Time,
-} from "../styles/summaryContactInfo.css";
+} from "../styles/Contact.css";
 import { handleModalContactInfo } from "../redux/features/contactSlice";
 
-const SummaryContactInfo = (props) => {
+const Contact = (props) => {
   const dispatch = useDispatch();
   const { active, handleOnClickContact, type, image, username, info, id } =
     props;
@@ -21,12 +21,12 @@ const SummaryContactInfo = (props) => {
   };
 
   switch (type) {
-    case "profile-receiver-info":
+    case "sum-receiver-info":
       style.fontSizeH1 = "1.05rem";
       style.fontSizeP = "0.85rem";
       style.imageWidth = "3rem";
       break;
-    case "contact-receiver-info":
+    case "contact":
       style.fontSizeH1 = "1.1rem";
       style.fontSizeP = "0.85rem";
       style.imageWidth = "3.5rem";
@@ -35,7 +35,7 @@ const SummaryContactInfo = (props) => {
       break;
   }
   const handleClickImage = () => {
-    type === "profile-receiver-info" && dispatch(handleModalContactInfo(true));
+    type === "sum-receiver-info" && dispatch(handleModalContactInfo(true));
   };
 
   return (
@@ -57,9 +57,9 @@ const SummaryContactInfo = (props) => {
         </H1>
         <P fontSize={style.fontSizeP}>{info}</P>
       </InfoContactUser>
-      {type === "contact-receiver-info" && <Time>18:00</Time>}
+      {type === "contact" && <Time>18:00</Time>}
     </ContainerContactInfo>
   );
 };
 
-export default SummaryContactInfo;
+export default Contact;

@@ -8,7 +8,6 @@ export const ContainerModal = styled.section`
   left: 0;
   position: ${({ position }) => position};
   height: 100%;
-  overflow-y: scroll;
   transform: translateX(-100%);
   &.modal-active {
     transform: translateX(0);

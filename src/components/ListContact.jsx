@@ -31,7 +31,7 @@ const ListContact = () => {
     socket.emit(EVENTS_CHAT_SOCKET.LOAD_MESSAGES, id); //-->id = idReceiver
 
   };
-
+  console.log("contacts: ", contacts)
   return (
     <ContainerListContact>
       {contacts.length > 0 &&

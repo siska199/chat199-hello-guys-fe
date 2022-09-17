@@ -55,7 +55,9 @@ const Contact = (props) => {
         <H1 type={type} fontSize={style.fontSizeH1}>
           {username}
         </H1>
-        <P fontSize={style.fontSizeP}>{info}</P>
+        <P fontSize={style.fontSizeP}>
+          {info}
+        </P>
       </InfoContactUser>
       {type === "contact" && <Time>18:00</Time>}
     </ContainerContactInfo>

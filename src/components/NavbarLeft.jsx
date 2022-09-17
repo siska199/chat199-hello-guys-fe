@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdMessage } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
-import { NavbarContainerLeft, ContainerIcons, Icon } from "../styles/navbarLeft.css";
+import {
+  NavbarContainerLeft,
+  ContainerIcons,
+  Icon,
+} from "../styles/navbarLeft.css";
 import { useDispatch, useSelector } from "react-redux";
 import { handleModalProfile } from "../redux/features/profileSlice";
 import SettingMenu from "./SettingMenu";
 
 const NavbarLeft = () => {
-  const userImage = useSelector((state) => state.profile.value.user?.image);
+  const { image, id } = useSelector((state) => state.profile.value?.user);
   const [settingShow, setSettingShow] = useState(false);
   const dispatch = useDispatch();
   const handleShowProfile = () => {
@@ -17,7 +21,7 @@ const NavbarLeft = () => {
 
   return (
     <NavbarContainerLeft>
-      <img src={userImage} alt="" onClick={() => handleShowProfile()} />{" "}
+      <img src={image} alt="" onClick={() => handleShowProfile()} />
       <ContainerIcons>
         <Icon>
           <FaHistory className="icon" />

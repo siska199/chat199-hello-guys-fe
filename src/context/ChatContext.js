@@ -1,12 +1,8 @@
 import { createContext, useReducer } from "react";
+import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000", {
-  auth: {
-    token: localStorage.getItem("token"),
-  },
-});
-const ChatContext = createContext(socket);
+const ChatContext = createContext(null);
 export const EVENTS_CHAT_SOCKET = {
   CONNECTION_ERROR: "CONNECTION_ERROR",
   SEND_MESSAGE: "SEND_MESSAGE",
@@ -24,6 +20,7 @@ export const TYPES_CHAT_REDUCER = {
   SET_ACTIVE_CONTACT: "SET_ACTIVE_CONTACT",
   SET_NEW_MESSAGE: "SET_NEW_MESSAGE",
   DELETE_NEW_MESSAGES_SPECIFIED_USER: "DELETE_NEW_MESSAGES_SPECIFIED_USER",
+  USER_DISCONNECTED: "USER_DISCONNECTED",
 };
 
 const initialState = {
@@ -54,6 +51,10 @@ const reducer = (state, action) => {
           (id) => id !== idContactActive
         ),
       };
+    case TYPES_CHAT_REDUCER.USER_DISCONNECTED:
+      return {
+        ...initialState,
+      };
     default:
       break;
   }
@@ -61,7 +62,13 @@ const reducer = (state, action) => {
 
 export const ChatContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const user = useSelector((state) => state.profile.value.user);
+  console.log("user: ", user)
+  const socket = io("http://localhost:5000", {
+    auth: {
+      token: user?.token || localStorage.getItem("token")
+    },
+  });
   socket
     .off(EVENTS_CHAT_SOCKET.CONNECTION_ERROR)
     .on(EVENTS_CHAT_SOCKET.CONNECTION_ERROR, (err) => {

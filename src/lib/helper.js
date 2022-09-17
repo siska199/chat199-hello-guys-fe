@@ -66,3 +66,14 @@ export const handleUploadImageToCloudinary = async (image) => {
 
   return dataImage.secure_url;
 };
+
+export const getFormatDate = (date) => {
+  const dateNew = new Date(date);
+  const stringHours = String(dateNew.getHours());
+  const stringMinutes = String(dateNew.getMinutes());
+
+  const dateNewFormat = `${
+    stringHours.length > 1 ? stringHours : 0 + stringHours
+  }:${stringMinutes.length > 1 ? stringMinutes : 0 + stringMinutes}`;
+  return dateNewFormat;
+};

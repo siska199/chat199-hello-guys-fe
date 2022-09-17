@@ -33,14 +33,13 @@ const Chat = () => {
     containerRef.current && scrollToBottom();
   }, [messages]);
 
-
   const scrollToBottom = () => {
     containerRef.current.scroll({
       top: containerRef.current.scrollHeight,
       left: 0,
     });
   };
-
+  console.log("messages: ", messages);
   return (
     <Page>
       <ContainerChat>

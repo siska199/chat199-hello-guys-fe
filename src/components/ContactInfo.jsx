@@ -17,7 +17,6 @@ const ContactInfo = () => {
   const handleClose = () => {
     dispatch(handleModalContactInfo(false));
   };
-  console.log("modal contact info", modalContactInfo);
   return (
     <ContainerContactInfo active={modalContactInfo}>
       <ConatainerNavbar>

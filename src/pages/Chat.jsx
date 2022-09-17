@@ -19,6 +19,8 @@ import { useRef } from "react";
 import ListContact from "../components/ListContact";
 import OpenigPicture from "../components/OpenigPicture";
 import ContactInfo from "../components/ContactInfo";
+import { TYPES_CHAT_REDUCER } from "../context/ChatContext";
+import { EVENTS_CHAT_SOCKET } from "../context/ChatContext";
 
 const Chat = () => {
   const containerRef = useRef(null);
@@ -30,6 +32,7 @@ const Chat = () => {
   useEffect(() => {
     containerRef.current && scrollToBottom();
   }, [messages]);
+
 
   const scrollToBottom = () => {
     containerRef.current.scroll({

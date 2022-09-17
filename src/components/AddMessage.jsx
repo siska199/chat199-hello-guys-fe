@@ -6,10 +6,10 @@ import { ContainerAddMessage } from "../styles/addMessage.css";
 import { useContext } from "react";
 import ChatContext from "../context/ChatContext";
 import { EVENTS_CHAT_SOCKET } from "../context/ChatContext";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const AddMessage = () => {
-  const idUser = useState(state=>state.profile.user.id)
+  const idUser = useSelector((state) => state.profile.value.user.id);
   const {
     socket,
     state: { activeContact },
@@ -22,8 +22,7 @@ const AddMessage = () => {
         idReceiver: activeContact.id,
         text: e.target.value,
       };
-      socket.emit(EVENTS_CHAT_SOCKET.NEW_MESSAGE, form);
-      socket.emit(EVENTS_CHAT_SOCKET.LOAD_MESSAGES, activeContact.id);
+      socket.emit(EVENTS_CHAT_SOCKET.SEND_MESSAGE, form);
       e.target.value = "";
     }
   };

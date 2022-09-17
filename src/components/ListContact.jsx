@@ -17,14 +17,19 @@ const ListContact = () => {
 
   useEffect(() => {
     socket.emit(EVENTS_CHAT_SOCKET.LOAD_CONTACTS, id);
-  }, [socket]);
+  }, []);
 
   const handleOnClickContact = (id) => {
+    dispatch({
+      type: TYPES_CHAT_REDUCER.SET_MESSAGES,
+      payload: [],
+    });
     dispatch({
       type: TYPES_CHAT_REDUCER.SET_ACTIVE_CONTACT,
       payload: contacts.filter((data) => data.id === id)[0],
     });
     socket.emit(EVENTS_CHAT_SOCKET.LOAD_MESSAGES, id); //-->id = idReceiver
+
   };
 
   return (

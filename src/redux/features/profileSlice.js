@@ -142,11 +142,9 @@ const profileSlice = createSlice({
 
     [handleLogout.pending]: (state, action) => {},
     [handleLogout.fulfilled]: (state, action) => {
-      console.log(action);
       if (action.payload.error) {
         state.value.error = action.payload.error;
       } else {
-        console.log("user null");
         state.value.user = null;
       }
     },

@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
 import { createContext, useReducer } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io("http://localhost:5000", {
+  auth: {
+    token: localStorage.getItem("token"),
+  },
+});
 const ChatContext = createContext(socket);
-
 export const EVENTS_CHAT_SOCKET = {
   CONNECTION_ERROR: "CONNECTION_ERROR",
+  SEND_MESSAGE: "SEND_MESSAGE",
   NEW_MESSAGE: "NEW_MESSAGE",
   LOAD_CONTACTS: "LOAD_CONTACTS",
   CONTACTS: "CONTACTS",
@@ -58,24 +61,37 @@ const reducer = (state, action) => {
 
 export const ChatContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  socket.on(EVENTS_CHAT_SOCKET.CONNECTION_ERROR, (err) => {
-    new Error(err.message);
-  });
-  
-  socket.on(EVENTS_CHAT_SOCKET.CONTACTS, (dataContacts) => {
-    dispatch({
-      type: TYPES_CHAT_REDUCER.SET_CONTACTS,
-      payload: dataContacts,
-    });
-  });
 
-  socket.on(EVENTS_CHAT_SOCKET.MESSAGES, (dataMessages) => {
-    dispatch({
-      type: TYPES_CHAT_REDUCER.SET_MESSAGES,
-      payload: dataMessages,
+  socket
+    .off(EVENTS_CHAT_SOCKET.CONNECTION_ERROR)
+    .on(EVENTS_CHAT_SOCKET.CONNECTION_ERROR, (err) => {
+      new Error(err.message);
     });
-  });
 
+  socket
+    .off(EVENTS_CHAT_SOCKET.CONTACTS)
+    .on(EVENTS_CHAT_SOCKET.CONTACTS, (dataContacts) => {
+      dispatch({
+        type: TYPES_CHAT_REDUCER.SET_CONTACTS,
+        payload: dataContacts,
+      });
+    });
+
+  socket
+    .off(EVENTS_CHAT_SOCKET.MESSAGES)
+    .on(EVENTS_CHAT_SOCKET.MESSAGES, (dataMessages) => {
+      console.log(dataMessages);
+      dispatch({
+        type: TYPES_CHAT_REDUCER.SET_MESSAGES,
+        payload: dataMessages,
+      });
+    });
+
+  socket
+    .off(EVENTS_CHAT_SOCKET.NEW_MESSAGE)
+    .on(EVENTS_CHAT_SOCKET.NEW_MESSAGE, (idReceiver) => {
+      socket.emit(EVENTS_CHAT_SOCKET.LOAD_MESSAGES, idReceiver);
+    });
   return (
     <ChatContext.Provider
       value={{

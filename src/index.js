@@ -11,12 +11,12 @@ import "react-notifications/lib/notifications.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ChatContextProvider>
-      <BrowserRouter>
-        <Provider store={store}>
+    <Provider store={store}>
+      <ChatContextProvider>
+        <BrowserRouter>
           <App />
-        </Provider>
-      </BrowserRouter>
-    </ChatContextProvider>
+        </BrowserRouter>
+      </ChatContextProvider>
+    </Provider>
   </React.StrictMode>
 );

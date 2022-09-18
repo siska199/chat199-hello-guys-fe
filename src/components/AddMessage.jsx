@@ -16,7 +16,7 @@ const AddMessage = () => {
   } = useContext(ChatContext);
 
   const handleSubmitMessage = (e) => {
-    if (e.code === "Enter") {
+    if (e.code === "Enter" && e.target.value !== "") {
       const form = {
         idSender: idUser,
         idReceiver: activeContact.id,

@@ -29,9 +29,9 @@ const ListContact = () => {
       payload: contacts.filter((data) => data.id === id)[0],
     });
     socket.emit(EVENTS_CHAT_SOCKET.LOAD_MESSAGES, id); //-->id = idReceiver
-
   };
-  console.log("contacts: ", contacts)
+  console.log("contacts: ", contacts);
+  console.log("active contact: ", activeContact);
   return (
     <ContainerListContact>
       {contacts.length > 0 &&
@@ -42,10 +42,13 @@ const ListContact = () => {
             type={"contact"}
             image={data.image}
             username={data.username}
+            info={data.lastMessage?.text}
+            date={data.lastMessage?.createdAt}
             handleOnClickContact={handleOnClickContact}
             active={
               activeContact && activeContact.id === data.id ? true : false
             }
+            notif={data.notif}
           />
         ))}
     </ContainerListContact>

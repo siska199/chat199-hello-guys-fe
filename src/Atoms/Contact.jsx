@@ -7,13 +7,24 @@ import {
   P,
   Img,
   Time,
+  Notif,
+  ContainerTimeAndNotif,
 } from "../styles/Contact.css";
 import { handleModalContactInfo } from "../redux/features/contactSlice";
-
+import { formatDateForSumContactInfo } from "../lib/helper";
 const Contact = (props) => {
   const dispatch = useDispatch();
-  const { active, handleOnClickContact, type, image, username, info, id } =
-    props;
+  const {
+    active,
+    handleOnClickContact,
+    type,
+    image,
+    username,
+    info,
+    id,
+    date,
+    notif,
+  } = props;
   const style = {
     fontSizeH1: "",
     fontSizeP: "",
@@ -38,6 +49,8 @@ const Contact = (props) => {
     type === "sum-receiver-info" && dispatch(handleModalContactInfo(true));
   };
 
+  const dateWithNewFormat = date ? formatDateForSumContactInfo(date) : "";
+  const lasMessage = info ? info : "clik to start a chatting";
   return (
     <ContainerContactInfo
       type={type}
@@ -56,10 +69,15 @@ const Contact = (props) => {
           {username}
         </H1>
         <P fontSize={style.fontSizeP}>
-          {info}
+          {type === "contact" ? lasMessage : info}
         </P>
       </InfoContactUser>
-      {type === "contact" && <Time>18:00</Time>}
+      {type === "contact" && (
+        <ContainerTimeAndNotif>
+          <Time>{dateWithNewFormat}</Time>
+          <Notif>{notif}</Notif>
+        </ContainerTimeAndNotif>
+      )}
     </ContainerContactInfo>
   );
 };

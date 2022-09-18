@@ -63,10 +63,10 @@ const reducer = (state, action) => {
 export const ChatContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const user = useSelector((state) => state.profile.value.user);
-  console.log("user: ", user)
+  console.log("user: ", user);
   const socket = io("http://localhost:5000", {
     auth: {
-      token: user?.token || localStorage.getItem("token")
+      token: user?.token || localStorage.getItem("token"),
     },
   });
   socket
@@ -99,6 +99,9 @@ export const ChatContextProvider = ({ children }) => {
     .on(EVENTS_CHAT_SOCKET.NEW_MESSAGE, (idReceiver) => {
       socket.emit(EVENTS_CHAT_SOCKET.LOAD_MESSAGES, idReceiver);
     });
+  socket.off("RELOAD_CONTACTS").on("RELOAD_CONTACTS", () => {
+    socket.emit(EVENTS_CHAT_SOCKET.LOAD_CONTACTS, user.id);
+  });
   return (
     <ChatContext.Provider
       value={{

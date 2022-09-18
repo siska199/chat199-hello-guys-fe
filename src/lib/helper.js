@@ -1,5 +1,5 @@
 import { imagesFemale, imagesMale } from "./data";
-
+import moment from "moment";
 export const generateImages = () => {
   const indexs = [];
   const images = [];
@@ -77,3 +77,18 @@ export const getFormatDate = (date) => {
   }:${stringMinutes.length > 1 ? stringMinutes : 0 + stringMinutes}`;
   return dateNewFormat;
 };
+
+export const formatDateForSumContactInfo = (date) => {
+  const day = moment(date).calendar().split(" ")[0];
+  const time = getFormatDate(date);
+  console.log("day: ", day);
+  console.log("time", time);
+  if (day === "Today") {
+    return time;
+  } else if (day === "Tomorrow") {
+    return day;
+  } else {
+    return moment(date).calendar("L");
+  }
+};
+
